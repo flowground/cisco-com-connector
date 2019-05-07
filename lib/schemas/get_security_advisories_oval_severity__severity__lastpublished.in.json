@@ -1,0 +1,26 @@
+{
+    "type": "object",
+    "properties": {
+        "severity": {
+            "required": true,
+            "type": "string",
+            "format": "enum",
+            "enum": [
+                "critical",
+                "high",
+                "medium",
+                "low"
+            ]
+        },
+        "startDate": {
+            "required": true,
+            "type": "string",
+            "format": "date"
+        },
+        "endDate": {
+            "required": true,
+            "type": "string",
+            "format": "date"
+        }
+    }
+}

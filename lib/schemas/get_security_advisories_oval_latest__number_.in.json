@@ -1,0 +1,10 @@
+{
+    "type": "object",
+    "properties": {
+        "number": {
+            "required": true,
+            "type": "integer",
+            "format": "number"
+        }
+    }
+}

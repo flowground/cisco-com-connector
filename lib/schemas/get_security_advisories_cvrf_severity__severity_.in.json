@@ -1,0 +1,16 @@
+{
+    "type": "object",
+    "properties": {
+        "severity": {
+            "required": true,
+            "type": "string",
+            "format": "enum",
+            "enum": [
+                "critical",
+                "high",
+                "medium",
+                "low"
+            ]
+        }
+    }
+}

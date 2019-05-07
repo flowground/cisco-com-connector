@@ -1,0 +1,373 @@
+{
+    "title": "Cisco PSIRT openVuln",
+    "description": "The Cisco Product Security Incident Response Team (PSIRT) openVuln API is a RESTful API that allows customers to obtain Cisco Security Vulnerability information in different machine-consumable formats. APIs are important for customers because they allow their technical staff and programmers to build tools that help them do their job more effectively (in this case, to keep up with security vulnerability information).\nFor more information about the Cisco PSIRT openVuln API visit https://developer.cisco.com/site/PSIRT/discover/overview\n\nFor detail steps on how to use the API go to:https://developer.cisco.com/site/PSIRT/get-started/getting-started.gsp\n\nThis is a beta release of a swagger YAML for the Cisco PSIRT openVuln API\n\nTo access the API sign in with your Cisco CCO account at http://apiconsole.cisco.com and register an application\nto recieve a client_id and a client_secret\n\nYou can then get your token using curl or any other method you prefer.\n\n'curl -s -k -H \"Content-Type: application/x-www-form-urlencoded\" -X POST -d \"client_id=<your_client_id>\" -d \"client_secret=<your_client_secret>\" -d \"grant_type=client_credentials\" https://cloudsso.cisco.com/as/token.oauth2'\n\nYou will receive an access token as demonstrated in the following example:\n '{\"access_token\":\"I7omWtBDAieSiUX3shOxNJfuy4J6\",\"token_type\":\"Bearer\",\"expires_in\":3599}'\n\nIn Swagger, click on Change Authentication\n\nenter the text \"I7omWtBDAieSiUX3shOxNJfuy4J6\" (which is the token you received)\n\nthen click on \"Try this operation\"\n",
+    "docsUrl": "",
+    "url": "https://api.apis.guru/v2/specs/cisco.com/0.0.3/swagger.json",
+    "envVars": {
+        "OAUTH_CLIENT_ID": {
+            "description": "OAuth Client ID"
+        },
+        "OAUTH_CLIENT_SECRET": {
+            "description": "OAuth Client Secret"
+        }
+    },
+    "credentials": {
+        "fields": {
+            "server": {
+                "label": "Server",
+                "viewClass": "SelectView",
+                "model": [
+                    "https://api.cisco.com/",
+                    "--- Custom URL"
+                ],
+                "required": true
+            },
+            "otherServer": {
+                "label": "Custom Server URL",
+                "viewClass": "TextFieldView"
+            },
+            "psirt_openvuln_api_auth": {
+                "label": "psirt_openvuln_api_auth",
+                "viewClass": "OAuthFieldView"
+            }
+        },
+        "oauth2": {
+            "client_id": "{{OAUTH_CLIENT_ID}}",
+            "client_secret": "{{OAUTH_CLIENT_SECRET}}",
+            "auth_uri": "https://cloudsso.cisco.com/as/token.oauth2"
+        }
+    },
+    "triggers": {
+        "startFlow": {
+            "main": "./lib/triggers/startFlow.js",
+            "type": "polling",
+            "title": "Start Flow",
+            "fields": {}
+        }
+    },
+    "actions": {
+        "get_security_advisories_cvrf_advisory__advisory_id_": {
+            "main": "./lib/actions/get_security_advisories_cvrf_advisory__advisory_id_.js",
+            "title": "Used to obtain an advisory in CVRF format for a given advisory ID `advisory_id` (i.e., cisco-sa-20150819-pcp)\n",
+            "description": "Used to obtain an advisory in CVRF format for a given advisory ID `advisory_id` (i.e., cisco-sa-20150819-pcp)\n",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_security_advisories_cvrf_advisory__advisory_id_.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_security_advisories_cvrf_all": {
+            "main": "./lib/actions/get_security_advisories_cvrf_all.js",
+            "title": "Used to obtain all advisories in Common Vulnerability Reporting Format (CVRF). For more information about CVRF go to https://communities.cisco.com/docs/DOC-63156 . By default the output is in JSON. To obtain the output in XML use the .xml extension. For example, /advisories/cvrf/all.xml\n",
+            "description": "Used to obtain all advisories in Common Vulnerability Reporting Format (CVRF). For more information about CVRF go to https://communities.cisco.com/docs/DOC-63156 . By default the output is in JSON. To obtain the output in XML use the .xml extension. For example, /advisories/cvrf/all.xml\n",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_security_advisories_cvrf_all.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_security_advisories_cvrf_cve__cve_id_": {
+            "main": "./lib/actions/get_security_advisories_cvrf_cve__cve_id_.js",
+            "title": "Used to obtain an advisory in CVRF format for a given Common Vulnerability Enumerator (CVE). The `cve_id` format is CVE-YYYY-NNNN. For more information about CVE visit http://cve.mitre.org/\n",
+            "description": "Used to obtain an advisory in CVRF format for a given Common Vulnerability Enumerator (CVE). The `cve_id` format is CVE-YYYY-NNNN. For more information about CVE visit http://cve.mitre.org/\n",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_security_advisories_cvrf_cve__cve_id_.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_security_advisories_cvrf_latest__number_": {
+            "main": "./lib/actions/get_security_advisories_cvrf_latest__number_.js",
+            "title": "Used to obtain all the latest security advisories in CVRF format given an absolute number. For instance, the latest 10 or latest 5.\n",
+            "description": "Used to obtain all the latest security advisories in CVRF format given an absolute number. For instance, the latest 10 or latest 5.\n",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_security_advisories_cvrf_latest__number_.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_security_advisories_cvrf_product": {
+            "main": "./lib/actions/get_security_advisories_cvrf_product.js",
+            "title": "Used to obtain all the advisories that affects the given product name.\n",
+            "description": "Used to obtain all the advisories that affects the given product name.\n",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_security_advisories_cvrf_product.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_security_advisories_cvrf_severity__severity_": {
+            "main": "./lib/actions/get_security_advisories_cvrf_severity__severity_.js",
+            "title": "Used to obtain all security advisories for a given security impact rating (critical, high, medium, or low) in CVRF format.\n",
+            "description": "Used to obtain all security advisories for a given security impact rating (critical, high, medium, or low) in CVRF format.\n",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_security_advisories_cvrf_severity__severity_.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_security_advisories_cvrf_severity__severity__firstpublished": {
+            "main": "./lib/actions/get_security_advisories_cvrf_severity__severity__firstpublished.js",
+            "title": "Used to obtain all security advisories for a given security impact rating (critical, high, medium, or low) in CVRF format and additionally filter based of firstpublished start date and enddate\n",
+            "description": "Used to obtain all security advisories for a given security impact rating (critical, high, medium, or low) in CVRF format and additionally filter based of firstpublished start date and enddate\n",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_security_advisories_cvrf_severity__severity__firstpublished.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_security_advisories_cvrf_severity__severity__lastpublished": {
+            "main": "./lib/actions/get_security_advisories_cvrf_severity__severity__lastpublished.js",
+            "title": "Used to obtain all security advisories for a given security impact rating (critical, high, medium, or low) in CVRF format.\n",
+            "description": "Used to obtain all security advisories for a given security impact rating (critical, high, medium, or low) in CVRF format.\n",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_security_advisories_cvrf_severity__severity__lastpublished.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_security_advisories_cvrf_year__year_": {
+            "main": "./lib/actions/get_security_advisories_cvrf_year__year_.js",
+            "title": "Used to obtain all security advisories that have were orginally published in a specific year `YYYY`.\n",
+            "description": "Used to obtain all security advisories that have were orginally published in a specific year `YYYY`.\n",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_security_advisories_cvrf_year__year_.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_security_advisories_ios": {
+            "main": "./lib/actions/get_security_advisories_ios.js",
+            "title": "Used to obtain all advisories that affects the given ios version\n",
+            "description": "Used to obtain all advisories that affects the given ios version\n",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_security_advisories_ios.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_security_advisories_iosxe": {
+            "main": "./lib/actions/get_security_advisories_iosxe.js",
+            "title": "Used to obtain all advisories that affects the given ios version\n",
+            "description": "Used to obtain all advisories that affects the given ios version\n",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_security_advisories_iosxe.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_security_advisories_oval_advisory__advisory_id_": {
+            "main": "./lib/actions/get_security_advisories_oval_advisory__advisory_id_.js",
+            "title": "Used to obtain OVAL definitions for a given advisory ID `advisory_id` (i.e., cisco-sa-20150819-pcp)\n",
+            "description": "Used to obtain OVAL definitions for a given advisory ID `advisory_id` (i.e., cisco-sa-20150819-pcp)\n",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_security_advisories_oval_advisory__advisory_id_.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_security_advisories_oval_all": {
+            "main": "./lib/actions/get_security_advisories_oval_all.js",
+            "title": "Used to obtain all Open Vulnerability and Assessment Language (OVAL) definitions available for Cisco security vulnerabilities. For more information about OVAL go to https://communities.cisco.com/docs/DOC-63158 . By default the output is in JSON. To obtain the output in XML use the .xml extension. For example, /advisories/oval/all.xml\n",
+            "description": "Used to obtain all Open Vulnerability and Assessment Language (OVAL) definitions available for Cisco security vulnerabilities. For more information about OVAL go to https://communities.cisco.com/docs/DOC-63158 . By default the output is in JSON. To obtain the output in XML use the .xml extension. For example, /advisories/oval/all.xml\n",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_security_advisories_oval_all.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_security_advisories_oval_cve__cve_id_": {
+            "main": "./lib/actions/get_security_advisories_oval_cve__cve_id_.js",
+            "title": "Used to obtain OVAL definitions for a given CVE Identifier. The `cve_id` format is CVE-YYYY-NNNN.\n",
+            "description": "Used to obtain OVAL definitions for a given CVE Identifier. The `cve_id` format is CVE-YYYY-NNNN.\n",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_security_advisories_oval_cve__cve_id_.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_security_advisories_oval_latest__number_": {
+            "main": "./lib/actions/get_security_advisories_oval_latest__number_.js",
+            "title": "Used to obtain all the latest OVAL definitions given an absolute number. For instance, the latest 10 or latest 5.\n",
+            "description": "Used to obtain all the latest OVAL definitions given an absolute number. For instance, the latest 10 or latest 5.\n",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_security_advisories_oval_latest__number_.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_security_advisories_oval_product": {
+            "main": "./lib/actions/get_security_advisories_oval_product.js",
+            "title": "Used to obtain all the oval advisories that affects the given product name.\n",
+            "description": "Used to obtain all the oval advisories that affects the given product name.\n",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_security_advisories_oval_product.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_security_advisories_oval_severity__severity_": {
+            "main": "./lib/actions/get_security_advisories_oval_severity__severity_.js",
+            "title": "Used to obtain all OVAL definitions for a given security impact rating (critical, high, medium, or low).\n",
+            "description": "Used to obtain all OVAL definitions for a given security impact rating (critical, high, medium, or low).\n",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_security_advisories_oval_severity__severity_.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_security_advisories_oval_severity__severity__firstpublished": {
+            "main": "./lib/actions/get_security_advisories_oval_severity__severity__firstpublished.js",
+            "title": "Used to obtain all security advisories for a given security impact rating (critical, high, medium, or low) in OVAL format.\n",
+            "description": "Used to obtain all security advisories for a given security impact rating (critical, high, medium, or low) in OVAL format.\n",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_security_advisories_oval_severity__severity__firstpublished.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_security_advisories_oval_severity__severity__lastpublished": {
+            "main": "./lib/actions/get_security_advisories_oval_severity__severity__lastpublished.js",
+            "title": "Used to obtain all security advisories for a given security impact rating (critical, high, medium, or low) in OVAL format.\n",
+            "description": "Used to obtain all security advisories for a given security impact rating (critical, high, medium, or low) in OVAL format.\n",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_security_advisories_oval_severity__severity__lastpublished.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        }
+    }
+}

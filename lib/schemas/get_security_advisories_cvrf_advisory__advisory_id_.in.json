@@ -1,0 +1,10 @@
+{
+    "type": "object",
+    "properties": {
+        "advisory_id": {
+            "required": true,
+            "type": "string",
+            "format": "cisco-sa-XXX"
+        }
+    }
+}
